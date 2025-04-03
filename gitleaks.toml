@@ -1,0 +1,3 @@
+[[allowlist.files]]
+  description = "Exclude .secrets.baseline"
+  regex = "\\.secrets\\.baseline$"
