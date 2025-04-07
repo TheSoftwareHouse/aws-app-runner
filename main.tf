@@ -86,3 +86,10 @@ resource "aws_apprunner_custom_domain_association" "this" {
   service_arn          = aws_apprunner_service.this.arn
   enable_www_subdomain = false
 }
+
+resource "aws_wafv2_web_acl_association" "this" {
+  count = var.associate_waf ? 1 : 0
+
+  resource_arn = aws_apprunner_service.this.arn
+  web_acl_arn  = var.waf_arn
+}

@@ -44,6 +44,7 @@
 | [aws_sns_topic.apprunner_cloudwatch_notifications](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/sns_topic) | resource |
 | [aws_sns_topic.apprunner_deployment_notifications](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/sns_topic) | resource |
 | [aws_sns_topic_policy.apprunner_deployment_notifications](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/sns_topic_policy) | resource |
+| [aws_wafv2_web_acl_association.this](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/wafv2_web_acl_association) | resource |
 | [aws_caller_identity.current](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/caller_identity) | data source |
 | [aws_iam_policy_document.app_runner_access_policy](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/iam_policy_document) | data source |
 | [aws_iam_policy_document.app_runner_access_role_assume_policy](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/iam_policy_document) | data source |
@@ -57,6 +58,7 @@
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | <a name="input_application_buckets"></a> [application\_buckets](#input\_application\_buckets) | Buckets where application will store data | `list(string)` | `[]` | no |
+| <a name="input_associate_waf"></a> [associate\_waf](#input\_associate\_waf) | Associate WAF with App Runner service | `bool` | `false` | no |
 | <a name="input_auto_deployments_enabled"></a> [auto\_deployments\_enabled](#input\_auto\_deployments\_enabled) | Enable automatic deployments after image tag push (tag has to be the same all the time, for example 'latest') | `bool` | `true` | no |
 | <a name="input_autoscaling_max_concurrency"></a> [autoscaling\_max\_concurrency](#input\_autoscaling\_max\_concurrency) | The maximum number of concurrent requests that App Runner can process per instance. | `number` | `3` | no |
 | <a name="input_autoscaling_max_size"></a> [autoscaling\_max\_size](#input\_autoscaling\_max\_size) | The maximum number of instances that App Runner can scale up to. | `number` | `3` | no |
@@ -90,6 +92,7 @@
 | <a name="input_tags"></a> [tags](#input\_tags) | A map of tags to assign to the App Runner resources. | `map(string)` | n/a | yes |
 | <a name="input_use_custom_domain"></a> [use\_custom\_domain](#input\_use\_custom\_domain) | Use custom domain for your AppRunner service (true/false)? Note, that this will create DNS records you have to add to your DNS provider | `bool` | `false` | no |
 | <a name="input_vpc_connector_arn"></a> [vpc\_connector\_arn](#input\_vpc\_connector\_arn) | The ARN of the VPC connector used to enable network access for the service. If left empty, the service will not be connected to a VPC. | `string` | `""` | no |
+| <a name="input_waf_arn"></a> [waf\_arn](#input\_waf\_arn) | Web ACL ARN of WAF to associate | `string` | `""` | no |
 
 ## Outputs
 

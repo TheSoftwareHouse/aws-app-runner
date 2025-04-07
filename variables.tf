@@ -198,3 +198,15 @@ variable "application_buckets" {
   description = "Buckets where application will store data"
   default     = []
 }
+
+variable "associate_waf" {
+  type        = bool
+  default     = false
+  description = "Associate WAF with App Runner service"
+}
+
+variable "waf_arn" {
+  type        = string
+  description = "Web ACL ARN of WAF to associate"
+  default     = ""
+}
