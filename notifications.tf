@@ -159,7 +159,7 @@ module "notify_slack_deployments" {
   slack_channel        = var.deployments_slack_channel
   slack_username       = var.deployments_slack_username
   lambda_function_name = "${var.service_name}-deployment-notifications"
-  iam_role_name_prefix = "${var.service_name}-deployment"
+  iam_role_name_prefix = "tsh"
 
   tags = var.tags
 }
@@ -179,7 +179,7 @@ module "notify_cloudwatch_alarms" {
   slack_channel        = var.cloudwatch_alarms_slack_channel
   slack_username       = var.cloudwatch_alarms_slack_username
   lambda_function_name = "${var.service_name}-cloudwatch-alarms"
-  iam_role_name_prefix = "${var.service_name}-cloudwatch"
+  iam_role_name_prefix = "tsh"
 
   tags = var.tags
 }
