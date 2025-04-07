@@ -158,7 +158,7 @@ module "notify_slack_deployments" {
   slack_webhook_url    = var.deployments_slack_webhook_url
   slack_channel        = var.deployments_slack_channel
   slack_username       = var.deployments_slack_username
-  lambda_function_name = "${var.service_name}-deployment-notifications"
+  lambda_function_name = "${var.service_name}-dpl"
   iam_role_name_prefix = "tsh"
 
   tags = var.tags
@@ -178,7 +178,7 @@ module "notify_cloudwatch_alarms" {
   slack_webhook_url    = var.cloudwatch_alarms_slack_webhook_url
   slack_channel        = var.cloudwatch_alarms_slack_channel
   slack_username       = var.cloudwatch_alarms_slack_username
-  lambda_function_name = "${var.service_name}-cloudwatch-alarms"
+  lambda_function_name = "${var.service_name}-cw"
   iam_role_name_prefix = "tsh"
 
   tags = var.tags
