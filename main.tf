@@ -20,7 +20,7 @@ resource "aws_apprunner_service" "this" {
 
   network_configuration {
     ingress_configuration {
-      is_publicly_accessible = true
+      is_publicly_accessible = var.is_publicly_accessible
     }
 
     dynamic "egress_configuration" {

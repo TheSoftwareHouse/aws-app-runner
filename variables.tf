@@ -104,6 +104,12 @@ variable "service_name" {
   description = "The name of the App Runner service."
 }
 
+variable "is_publicly_accessible" {
+  type        = bool
+  description = "Is this service accessible from Internet"
+  default     = true
+}
+
 variable "tags" {
   type        = map(string)
   description = "A map of tags to assign to the App Runner resources."
