@@ -28,8 +28,8 @@ data "aws_iam_policy_document" "app_runner_access_role_assume_policy" {
 
 locals {
   all_secret_arns     = values(var.runtime_environment_secrets)
-  secretsmanager_arns = [for arn in local.all_secret_arns : contains(arn, ":secretsmanager:") ? arn : ""]
-  ssm_parameter_arns  = [for arn in local.all_secret_arns : contains(arn, ":ssm:") ? arn : ""]
+  secretsmanager_arns = [for arn in local.all_secret_arns : strcontains(arn, ":ssm:") ? arn : null]
+  ssm_parameter_arns  = [for arn in local.all_secret_arns : strcontains(arn, ":ssm:") ? arn : null]
 }
 
 data "aws_iam_policy_document" "app_runner_instance_policy" {
