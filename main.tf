@@ -1,3 +1,7 @@
+resource "random_id" "random_prefix" {
+  byte_length = 8
+}
+
 resource "aws_apprunner_service" "this" {
   service_name = var.service_name
 
@@ -63,7 +67,7 @@ resource "aws_apprunner_service" "this" {
 }
 
 resource "aws_apprunner_auto_scaling_configuration_version" "this" {
-  auto_scaling_configuration_name = "${var.service_name}-autoscaling"
+  auto_scaling_configuration_name = "${random_id.random_prefix.hex}-autoscaling"
 
   max_concurrency = var.autoscaling_max_concurrency
   max_size        = var.autoscaling_max_size
@@ -73,7 +77,7 @@ resource "aws_apprunner_auto_scaling_configuration_version" "this" {
 }
 
 resource "aws_apprunner_observability_configuration" "this" {
-  observability_configuration_name = "${var.service_name}-xray"
+  observability_configuration_name = "${random_id.random_prefix.hex}-xray"
 
   trace_configuration {
     vendor = "AWSXRAY"
