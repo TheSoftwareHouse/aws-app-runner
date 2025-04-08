@@ -27,26 +27,30 @@ data "aws_iam_policy_document" "app_runner_access_role_assume_policy" {
 }
 
 data "aws_iam_policy_document" "app_runner_instance_policy" {
-  statement {
-    sid    = "S3ListBucketPolicy"
-    effect = "Allow"
-    actions = [
-      "s3:ListBucket",
-    ]
-    resources = [for bucket in var.application_buckets : "arn:aws:s3:::${bucket}"]
+  dynamic "statement" {
+    for_each = length(var.application_buckets) > 0 ? [1] : []
+    content {
+      sid    = "S3ListBucketPolicy"
+      effect = "Allow"
+      actions = [
+        "s3:ListBucket",
+      ]
+      resources = [for bucket in var.application_buckets : "arn:aws:s3:::${bucket}"]
+    }
   }
 
-  statement {
-    sid    = "S3ObjectsPolicy"
-    effect = "Allow"
-    actions = [
-      "s3:Get*",
-      "s3:Put*"
-    ]
-    resources = [for bucket in var.application_buckets : "arn:aws:s3:::${bucket}/*"]
+  dynamic "statement" {
+    for_each = length(var.application_buckets) > 0 ? [1] : []
+    content {
+      sid    = "S3ObjectsPolicy"
+      effect = "Allow"
+      actions = [
+        "s3:Get*",
+        "s3:Put*"
+      ]
+      resources = [for bucket in var.application_buckets : "arn:aws:s3:::${bucket}/*"]
+    }
   }
-
-
 
   statement {
     sid    = "SecretManagerPolicy"
