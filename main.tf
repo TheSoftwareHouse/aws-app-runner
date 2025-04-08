@@ -61,6 +61,12 @@ resource "aws_apprunner_service" "this" {
     aws_iam_role.app_runner_access_role
   ]
 
+  lifecycle {
+    ignore_changes = [
+      source_configuration[0].image_repository[0].image_identifier
+    ]
+  }
+
   auto_scaling_configuration_arn = aws_apprunner_auto_scaling_configuration_version.this.arn
 
   tags = var.tags
