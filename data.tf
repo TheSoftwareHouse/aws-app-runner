@@ -59,7 +59,13 @@ data "aws_iam_policy_document" "app_runner_instance_policy" {
       "secretsmanager:GetSecretValue",
     ]
 
-    resources = ["arn:aws:secretsmanager:*:*:secret:${var.service_name}*"]
+    resources = ["arn:aws:secretsmanager:*:*:secret:*"]
+
+    condition {
+      test     = "StringEquals"
+      variable = "aws:ResourceTag/app_runner_service"
+      values   = [var.service_name]
+    }
   }
   statement {
     sid    = "SSMPolicy"
@@ -68,8 +74,15 @@ data "aws_iam_policy_document" "app_runner_instance_policy" {
       "ssm:GetParameter",
       "ssm:GetParameters",
     ]
-    resources = ["arn:aws:ssm:*:*:parameter/${var.service_name}*"]
+    resources = ["arn:aws:ssm:*:*:parameter/*"]
+
+    condition {
+      test     = "StringEquals"
+      variable = "aws:ResourceTag/app_runner_service"
+      values   = [var.service_name]
+    }
   }
+
 }
 
 data "aws_iam_policy_document" "app_runner_access_policy" {
