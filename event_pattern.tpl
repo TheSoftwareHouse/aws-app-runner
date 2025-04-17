@@ -2,6 +2,7 @@
   "source": [ "aws.apprunner" ],
   "account": [ "${aws_account_id}" ],
   "detail": {
-    "operationStatus": [ "DeploymentStarted", "DeploymentCompletedSuccessfully", "DeploymentFailed", "UpdateServiceFailed", "UpdateServiceCompletedSuccessfully", "UpdateServiceStarted" ]
+    "operationStatus": [ "DeploymentStarted", "DeploymentCompletedSuccessfully", "DeploymentFailed", "UpdateServiceFailed", "UpdateServiceCompletedSuccessfully", "UpdateServiceStarted" ],
+    "serviceId": "${service_id}"
   }
 }

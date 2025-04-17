@@ -1,7 +1,7 @@
 resource "aws_cloudwatch_event_rule" "apprunner_deploy_notifications" {
   name          = "${var.service_name}-deploy-notifications"
   description   = "Monitor App Runner Deploy Notifications"
-  event_pattern = templatefile("${path.module}/event_pattern.tpl", { aws_account_id = data.aws_caller_identity.current.account_id })
+  event_pattern = templatefile("${path.module}/event_pattern.tpl", { aws_account_id = data.aws_caller_identity.current.account_id, service_id = aws_apprunner_service.this.service_id })
   state         = "ENABLED"
 }
 
