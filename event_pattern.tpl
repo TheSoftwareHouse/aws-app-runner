@@ -3,6 +3,6 @@
   "account": [ "${aws_account_id}" ],
   "detail": {
     "operationStatus": [ "DeploymentStarted", "DeploymentCompletedSuccessfully", "DeploymentFailed", "UpdateServiceFailed", "UpdateServiceCompletedSuccessfully", "UpdateServiceStarted" ],
-    "serviceId": "${service_id}"
+    "serviceId": ["${service_id}"]
   }
 }
