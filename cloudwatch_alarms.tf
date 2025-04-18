@@ -51,7 +51,7 @@ resource "aws_cloudwatch_metric_alarm" "app_runner_5xx_errors" {
   statistic           = "Sum"
   threshold           = 10
   alarm_description   = "This alarm triggers when there are more than 10 5xx errors in 10 minutes"
-  treat_missing_data  = "ignore"
+  treat_missing_data  = "notBreaching"
 
   dimensions = {
     ServiceName = aws_apprunner_service.this.service_name
@@ -72,7 +72,7 @@ resource "aws_cloudwatch_metric_alarm" "app_runner_4xx_errors" {
   statistic           = "Sum"
   threshold           = 50
   alarm_description   = "This alarm triggers when there are more than 50 4xx errors in 10 minutes"
-  treat_missing_data  = "ignore"
+  treat_missing_data  = "notBreaching"
 
   dimensions = {
     ServiceName = aws_apprunner_service.this.service_name
