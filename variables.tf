@@ -6,7 +6,7 @@ variable "aws_region" {
 variable "auto_deployments_enabled" {
   type        = bool
   description = "Enable automatic deployments after image tag push (tag has to be the same all the time, for example 'latest')"
-  default     = true
+  default     = false
 }
 
 variable "autoscaling_max_concurrency" {
