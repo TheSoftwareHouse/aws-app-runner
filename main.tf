@@ -6,8 +6,11 @@ resource "aws_apprunner_service" "this" {
   service_name = var.service_name
 
   source_configuration {
-    authentication_configuration {
-      access_role_arn = aws_iam_role.app_runner_access_role.arn
+    dynamic "authentication_configuration" {
+      for_each = var.image_repository_type == "ECR" ? [1] : []
+      content {
+        access_role_arn = aws_iam_role.app_runner_access_role.arn
+      }
     }
 
     image_repository {
